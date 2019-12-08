@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.origin.demo.dao.TestMapper">
+
+    <resultMap id="testDO" type="testDO">
+        <id column="id" property="id"/>
+
+    </resultMap>
+
+    <select id="getById" resultType="TestDO">
+        select *
+        from test.test
+        where id = #{id}
+    </select>
+
+    <select id="getList" resultType="TestDO">
+        select *
+        from test.test
+    </select>
+
+    <insert id="insert" parameterType="TestDO" useGeneratedKeys="true">
+        insert into test.test(name, sex, create_time, update_time)
+        VALUES(#{name}, #{sex}, #{createTime}, #{updateTime})
+    </insert>
+
+    <update id="update" parameterType="TestDO">
+        update test.test set name = #{name}
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        delete from test.test where id = #{id}
+    </delete>
+
+</mapper>
